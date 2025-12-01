@@ -24,7 +24,7 @@ export const members: Member[] = [
   { id: "isabelle", name: "Isabelle" },
   { id: "virginie", name: "Virginie" },
   { id: "sophie", name: "Sophie" },
-  { id: "nani", name: "Nani" },
+  { id: "nanie", name: "Nanie" },
   { id: "nassim", name: "Nassim" },
   { id: "roger", name: "Roger" },
   { id: "luc", name: "Luc" },
@@ -37,33 +37,65 @@ export const santaPairs: SantaPair[] = [
   { giverId: "virginie", receiverId: "isabelle" },
   { giverId: "jimmy", receiverId: "carole" },
   { giverId: "nassim", receiverId: "jimmy" },
-  { giverId: "luc", receiverId: "roger" },
-  { giverId: "sophie", receiverId: "nani" },
-  { giverId: "", receiverId: "nassim" },
+  { giverId: "luc", receiverId: "nanie" },
+  { giverId: "sophie", receiverId: "roger" },
+  { giverId: "nanie", receiverId: "nassim" },
 ];
 
 export const childWishlists: ChildWishlist[] = [
   {
-    id: "emma",
-    name: "Emma",
-    age: 8,
-    wishlistLink: "https://exemple.com/liste-emma",
+    id: "lila",
+    name: "Lila",
+    age: 10,
+    wishlistLink: "https://exemple.com/liste-lila",
     ideas: [
-      "Lego Friends",
-      "Livre de cheval",
-      "Jeu de société pour 2 joueurs"
+      "xxxxxxxxx",
+      "xxxxxxxxx",
+      "xxxxxxxxx"
     ]
   },
   {
-    id: "leo",
-    name: "Léo",
+    id: "sarah",
+    name: "Sarah",
     age: 5,
-    wishlistLink: "https://exemple.com/liste-leo",
+    wishlistLink: "https://exemple.com/liste-sarah",
     ideas: [
-      "Voitures Hot Wheels",
-      "Puzzle 50 pièces",
-      "Pyjama dinosaure"
+      "xxxxxxxxx",
+      "xxxxxxxxx",
+      "xxxxxxxxx"
     ]
   },
-  // ... à compléter
+  {
+    id: "rayane",
+    name: "Rayane",
+    age: 5,
+    wishlistLink: "https://exemple.com/liste-rayane",
+    ideas: [
+      "xxxxxxxxx",
+      "xxxxxxxxx",
+      "xxxxxxxxx"
+    ]
+  },
+  {
+    id: "julien",
+    name: "Julien",
+    age: 5,
+    wishlistLink: "https://exemple.com/liste-julien",
+    ideas: [
+      "xxxxxxxxx",
+      "xxxxxxxxx",
+      "xxxxxxxxx"
+    ]
+  },
+  {
+    id: "nicolas",
+    name: "Nicolas",
+    age: 5,
+    wishlistLink: "https://exemple.com/liste-nicolas",
+    ideas: [
+      "xxxxxxxxx",
+      "xxxxxxxxx",
+      "xxxxxxxxx"
+    ]
+  },
 ];
