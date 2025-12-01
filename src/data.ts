@@ -57,7 +57,7 @@ export const childWishlists: ChildWishlist[] = [
   {
     id: "sarah",
     name: "Sarah",
-    age: 5,
+    age: 17,
     wishlistLink: "https://exemple.com/liste-sarah",
     ideas: [
       "xxxxxxxxx",
@@ -68,7 +68,7 @@ export const childWishlists: ChildWishlist[] = [
   {
     id: "rayane",
     name: "Rayane",
-    age: 5,
+    age: 17,
     wishlistLink: "https://exemple.com/liste-rayane",
     ideas: [
       "xxxxxxxxx",
@@ -79,7 +79,7 @@ export const childWishlists: ChildWishlist[] = [
   {
     id: "julien",
     name: "Julien",
-    age: 5,
+    age: 0,
     wishlistLink: "https://exemple.com/liste-julien",
     ideas: [
       "xxxxxxxxx",
@@ -90,7 +90,7 @@ export const childWishlists: ChildWishlist[] = [
   {
     id: "nicolas",
     name: "Nicolas",
-    age: 5,
+    age: 0,
     wishlistLink: "https://exemple.com/liste-nicolas",
     ideas: [
       "xxxxxxxxx",
