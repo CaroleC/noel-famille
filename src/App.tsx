@@ -1,5 +1,5 @@
 // src/App.tsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { CSSProperties } from "react";
 import { members, santaPairs, childWishlists } from "./data";
 
@@ -10,6 +10,81 @@ function getMemberName(id: string): string {
   return m ? m.name : id;
 }
 
+// --------- COMPTE A REBOURS NOËL ---------
+
+type TimeLeft = {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+};
+
+function getNextChristmasEve(): Date {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  // 24 décembre à 00:00
+  const thisYearChristmasEve = new Date(currentYear, 11, 24, 0, 0, 0);
+
+  if (now <= thisYearChristmasEve) {
+    return thisYearChristmasEve;
+  }
+  // Si on est après le 24, on prend l'an prochain
+  return new Date(currentYear + 1, 11, 24, 0, 0, 0);
+}
+
+function calculateTimeLeft(): TimeLeft {
+  const target = getNextChristmasEve();
+  const now = new Date().getTime();
+  const diff = target.getTime() - now;
+
+  if (diff <= 0) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  return { days, hours, minutes, seconds };
+}
+
+function Countdown() {
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const { days, hours, minutes, seconds } = timeLeft;
+
+  const isZero = days === 0 && hours === 0 && minutes === 0 && seconds === 0;
+
+  return (
+    <div style={styles.countdownWrapper}>
+      {isZero ? (
+        <span style={styles.countdownText}>
+          🎅 C&apos;est Noël ! A nous les cadeaux ! 
+        </span>
+      ) : (
+        <span style={styles.countdownText}>
+          ⏳ Il reste{" "}
+          <strong>
+            {days}j {hours}h {minutes}m {seconds}s
+          </strong>{" "}
+          avant Noël 🎅
+        </span>
+      )}
+    </div>
+  );
+}
+
+// --------- APP PRINCIPALE ---------
+
 function App() {
   const [activeTab, setActiveTab] = useState<TabKey>("santa");
 
@@ -17,6 +92,10 @@ function App() {
     <div className="app" style={styles.app}>
       <header style={styles.header}>
         <h1 style={styles.title}>🎄 Noël en famille</h1>
+
+        {/* ✅ Décompte sous le titre */}
+        <Countdown />
+
         <p style={styles.subtitle}>
           Récap du Santa Cruz & listes du Père Noël des enfants
         </p>
@@ -48,7 +127,7 @@ function App() {
       </main>
 
       <footer style={styles.footer}>
-        <small>Appli familiale – juste pour nous ❤️</small>
+        <small>Appli familiale</small>
       </footer>
     </div>
   );
@@ -60,7 +139,6 @@ function SantaList() {
       <h2 style={styles.sectionTitle}>🎁 Liste Santa Cruz</h2>
       <p style={styles.text}>Voici qui offre un cadeau à qui cette année.</p>
 
-      {/* ✅ conteneur scrollable sur petit écran */}
       <div style={styles.tableWrapper}>
         <table style={styles.table}>
           <thead>
@@ -136,7 +214,7 @@ function KidsWishlists() {
 const styles: { [key: string]: CSSProperties } = {
   app: {
     minHeight: "100vh",
-    width: "100%",          // ✅ prend toute la largeur
+    width: "100%",
     maxWidth: "100%",
     fontFamily:
       "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
@@ -144,7 +222,7 @@ const styles: { [key: string]: CSSProperties } = {
     color: "#1a202c",
     display: "flex",
     flexDirection: "column",
-    padding: "1rem",        // un peu moins pour les petits écrans
+    padding: "1rem",
   },
   header: {
     textAlign: "center",
@@ -157,6 +235,19 @@ const styles: { [key: string]: CSSProperties } = {
   subtitle: {
     margin: "0.5rem 0 1rem",
     color: "#4a5568",
+  },
+  countdownWrapper: {
+    marginTop: "0.5rem",
+    marginBottom: "0.5rem",
+  },
+  countdownText: {
+    display: "inline-block",
+    padding: "0.4rem 0.8rem",
+    borderRadius: "999px",
+    background: "rgba(255, 255, 255, 0.8)",
+    boxShadow: "0 5px 12px rgba(0,0,0,0.06)",
+    fontSize: "0.9rem",
+    color: "#2d3748",
   },
   tabs: {
     display: "flex",
@@ -205,7 +296,7 @@ const styles: { [key: string]: CSSProperties } = {
   },
   tableWrapper: {
     width: "100%",
-    overflowX: "auto",     // ✅ scroll horizontal si écran très petit
+    overflowX: "auto",
     marginTop: "0.5rem",
   },
   table: {
