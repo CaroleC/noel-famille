@@ -1,0 +1,57 @@
+/* Reset de base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Le root prend tout l'écran */
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Styles globaux */
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Le body ne centre plus le contenu, il laisse l'app gérer la mise en page */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Liens */
+a {
+  font-weight: 500;
+  color: #2b6cb0;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Boutons : on laisse tes styles inline dans App.tsx faire le job,
+   donc on ne force quasiment rien ici */
+button {
+  font-family: inherit;
+}
+
+/* Titres */
+h1 {
+  font-size: 2.2rem;
+  line-height: 1.2;
+}
